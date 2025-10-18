@@ -1,6 +1,6 @@
 # 🍸 DrinkAdvisor  
 
-> Mobilna aplikacja do oceniania i komentowania trunków — społeczność smakoszy w Twojej kieszeni.  
+> Aplikacja do oceniania i komentowania trunków — społeczność smakoszy w Twojej kieszeni.  
 > Stworzona w **React**, **Node.js** i **MongoDB**.  
 
 ---
