@@ -18,7 +18,6 @@ const Dashboard = () => {
     try {
       setLoading(true);
       
-      // Fetch trending drinks
       const trendingResponse = await drinksApi.getTrendingDrinks();
       if (trendingResponse.status === 'success') {
         setTrendingDrinks(trendingResponse.data.slice(0, 6));
@@ -37,7 +36,6 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard-container">
-        {/* Welcome Section */}
         <section className="dashboard-welcome">
           <h1 className="dashboard-title">
             Welcome {user ? user.username : 'to DrinkAdvisor'}!
@@ -47,12 +45,11 @@ const Dashboard = () => {
           </p>
         </section>
 
-        {/* Trending Drinks Section */
         <section className="dashboard-section">
           <div className="section-header">
             <h2 className="section-title">🔥 Trending Drinks</h2>
             <Link to="/drinks" className="section-link">
-              View All →
+              View All
             </Link>
           </div>
 
@@ -88,7 +85,6 @@ const Dashboard = () => {
           )}
         </section>
 
-        {/* Quick Actions */}
         <section className="dashboard-actions">
           <Link to="/drinks" className="action-card">
             <span className="action-icon">🔍</span>
