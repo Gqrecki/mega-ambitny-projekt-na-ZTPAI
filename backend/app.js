@@ -23,8 +23,17 @@ dotenv.config();
 
 const app = express();
 
-// Security Middleware
-app.use(helmet());
+// Security Middleware - Configure helmet to allow Swagger UI
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+}));
 
 // Rate limiting
 const limiter = rateLimit({
