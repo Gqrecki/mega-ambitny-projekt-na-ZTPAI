@@ -115,17 +115,5 @@ npm run dev
 
 ---
 
-## ✅ Status Realizacji Wymagań (Checklista Ewaluacji)
-
-- [ ] [cite_start]**Architektura:** Podział na warstwy (Controllers / Services)[cite: 8].
-- [ ] **Baza Danych:** MongoDB z min. [cite_start]30 rekordami testowymi[cite: 4].
-- [ ] [cite_start]**Git:** Czytelna historia commitów (min. 40 commitów)[cite: 5].
-- [ ] [cite_start]**Asynchroniczność:** Implementacja kolejki RabbitMQ[cite: 14].
-- [ ] [cite_start]**Dokumentacja API:** Swagger/OpenAPI kompletne i aktualne[cite: 15].
-- [ ] [cite_start]**UX/UI:** Zgodność z projektem Figma, RWD[cite: 9].
-- [ ] [cite_start]**Jakość kodu:** Brak powielania logiki, poprawne nazewnictwo[cite: 13].
-
----
-
 
 Projekt wykonany w ramach zaliczenia przedmiotu.
