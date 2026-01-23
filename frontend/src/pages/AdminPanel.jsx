@@ -19,7 +19,7 @@ const AdminPanel = () => {
   const [drinkForm, setDrinkForm] = useState({
     name: '',
     brand: '',
-    category: 'whiskey',
+    category: 'whisky',
     description: '',
     alcoholPercentage: '',
     price: '',
@@ -43,13 +43,13 @@ const AdminPanel = () => {
       setLoading(true);
       
       if (activeTab === 'drinks') {
-        const response = await drinksApi.getDrinks({ limit: 100 });
+        const response = await drinksApi.getAllDrinks({ limit: 100 });
         if (response.status === 'success') {
           setDrinks(response.data.drinks || []);
         }
       } else if (activeTab === 'stats') {
         // Calculate stats from drinks data
-        const drinksResponse = await drinksApi.getDrinks({ limit: 100 });
+        const drinksResponse = await drinksApi.getAllDrinks({ limit: 100 });
         if (drinksResponse.status === 'success') {
           const drinksData = drinksResponse.data.drinks || [];
           
@@ -231,7 +231,7 @@ const AdminPanel = () => {
                       onChange={(e) => setDrinkForm({ ...drinkForm, category: e.target.value })}
                       required
                     >
-                      <option value="whiskey">Whiskey</option>
+                      <option value="whisky">Whisky</option>
                       <option value="vodka">Vodka</option>
                       <option value="rum">Rum</option>
                       <option value="gin">Gin</option>

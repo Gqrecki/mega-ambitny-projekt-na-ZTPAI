@@ -22,7 +22,7 @@ const Dashboard = () => {
       // Fetch trending drinks
       const trendingResponse = await drinksApi.getTrendingDrinks();
       if (trendingResponse.status === 'success') {
-        setTrendingDrinks(trendingResponse.data.drinks.slice(0, 6));
+        setTrendingDrinks(trendingResponse.data.slice(0, 6));
       }
 
       // Fetch user stats if authenticated

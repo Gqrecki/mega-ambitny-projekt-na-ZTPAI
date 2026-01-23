@@ -31,7 +31,7 @@ const DrinkDetails = () => {
       // Fetch drink details
       const drinkResponse = await drinksApi.getDrinkById(id);
       if (drinkResponse.status === 'success') {
-        setDrink(drinkResponse.data.drink);
+        setDrink(drinkResponse.data);
       }
 
       // Fetch reviews
@@ -87,7 +87,7 @@ const DrinkDetails = () => {
         setIsFavorited(false);
         toast.success('Removed from favorites');
       } else {
-        await favoritesApi.addFavorite({ drink: id });
+        await favoritesApi.addFavorite({ drinkId: id });
         setIsFavorited(true);
         toast.success('Added to favorites');
       }
@@ -119,7 +119,7 @@ const DrinkDetails = () => {
       } else {
         // Create new review
         const response = await gradesApi.createGrade({
-          drink: id,
+          drinkId: id,
           ...reviewForm,
         });
         if (response.status === 'success') {

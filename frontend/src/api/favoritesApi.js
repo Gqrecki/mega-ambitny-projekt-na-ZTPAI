@@ -30,7 +30,7 @@ const favoritesApi = {
    * @returns {Promise<Object>} - Favorites list
    */
   getMyFavorites: async (params = {}) => {
-    const response = await axios.get('/favorites/my', { params });
+    const response = await axios.get('/favorites', { params });
     return response.data;
   },
 

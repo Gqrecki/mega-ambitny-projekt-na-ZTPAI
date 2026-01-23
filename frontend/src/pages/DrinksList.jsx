@@ -6,7 +6,7 @@ import { Loading } from '../components';
 import DrinkCard from '../components/DrinkCard';
 import './DrinksList.css';
 
-const CATEGORIES = ['all', 'whiskey', 'vodka', 'rum', 'gin', 'wine', 'beer', 'liqueur', 'other'];
+const CATEGORIES = ['all', 'whisky', 'vodka', 'rum', 'gin', 'wine', 'beer', 'liqueur', 'other'];
 
 const DrinksList = () => {
   const { isAuthenticated } = useAuth();
