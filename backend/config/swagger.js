@@ -207,10 +207,18 @@ const options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 const setupSwagger = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  // Swagger UI options with explicit asset URLs
+  const swaggerUiOptions = {
     customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: 'DrinkAdvisor API Docs'
-  }));
+    customSiteTitle: 'DrinkAdvisor API Docs',
+    swaggerOptions: {
+      url: '/api-docs.json',
+      persistAuthorization: true
+    }
+  };
+
+  app.use('/api-docs', swaggerUi.serve);
+  app.get('/api-docs', swaggerUi.setup(swaggerSpec, swaggerUiOptions));
 
   // JSON endpoint for Swagger spec
   app.get('/api-docs.json', (req, res) => {

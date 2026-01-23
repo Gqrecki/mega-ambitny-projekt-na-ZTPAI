@@ -25,14 +25,8 @@ const app = express();
 
 // Security Middleware - Configure helmet to allow Swagger UI
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    },
-  },
+  contentSecurityPolicy: false, // Disable CSP for Swagger UI to work
+  hsts: false, // Disable HSTS for local development
 }));
 
 // Rate limiting
