@@ -17,9 +17,13 @@ class DrinkService {
     // Filter by availability
     query.isAvailable = true;
 
-    // Search by name or description
+    // Search by name, brand, or description (case-insensitive)
     if (search) {
-      query.$text = { $search: search };
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { brand: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } }
+      ];
     }
 
     const skip = (page - 1) * limit;
