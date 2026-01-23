@@ -15,6 +15,9 @@ import favoriteRoutes from './routes/favoriteRoutes.js';
 // Import middleware
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
+// Import Swagger
+import { swaggerSpec, swaggerUi } from './config/swagger.js';
+
 // Load environment variables
 dotenv.config();
 
