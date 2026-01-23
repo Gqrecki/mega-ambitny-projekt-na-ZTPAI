@@ -7,14 +7,14 @@ import { asyncHandler } from '../middleware/errorMiddleware.js';
  * @access  Public
  */
 export const getAllDrinks = asyncHandler(async (req, res) => {
-  const { page, limit, category, search, sortBy } = req.query;
+  const { page, limit, category, search, sort } = req.query;
 
   const result = await drinkService.getAllDrinks({
     page,
     limit,
     category,
     search,
-    sortBy
+    sortBy: sort
   });
 
   res.status(200).json({
