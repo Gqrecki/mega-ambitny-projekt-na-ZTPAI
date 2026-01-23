@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Login, Register, Dashboard } from './pages';
+import { Login, Register, Dashboard, DrinksList, DrinkDetails } from './pages';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,22 +21,8 @@ function App() {
             <Route path="/register" element={<Register />} />
 
             {/* Protected Routes - Phase 5 */}
-            <Route
-              path="/drinks"
-              element={
-                <div style={{ padding: '2rem', textAlign: 'center' }}>
-                  <h2>🍸 Drinks List - Coming in Phase 5</h2>
-                </div>
-              }
-            />
-            <Route
-              path="/drinks/:id"
-              element={
-                <div style={{ padding: '2rem', textAlign: 'center' }}>
-                  <h2>🍸 Drink Details - Coming in Phase 5</h2>
-                </div>
-              }
-            />
+            <Route path="/drinks" element={<DrinksList />} />
+            <Route path="/drinks/:id" element={<DrinkDetails />} />
             <Route
               path="/favorites"
               element={
