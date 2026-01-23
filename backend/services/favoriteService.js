@@ -6,10 +6,9 @@ class FavoriteService {
    * Add drink to favorites
    * @param {String} userId - User ID
    * @param {String} drinkId - Drink ID
-   * @param {Object} additionalData - Notes and tags
    * @returns {Object} Created favorite
    */
-  async addFavorite(userId, drinkId, { notes, tags } = {}) {
+  async addFavorite(userId, drinkId) {
     // Check if drink exists
     const drink = await Drink.findById(drinkId);
     if (!drink) {
@@ -29,9 +28,7 @@ class FavoriteService {
     // Create favorite
     const favorite = await FavoriteDrink.create({
       user: userId,
-      drink: drinkId,
-      notes,
-      tags: tags || []
+      drink: drinkId
     });
 
     await favorite.populate('drink', 'name category imageUrl price averageRating');
@@ -99,32 +96,6 @@ class FavoriteService {
         pages: Math.ceil(total / limit)
       }
     };
-  }
-
-  /**
-   * Update favorite notes/tags
-   * @param {String} userId - User ID
-   * @param {String} drinkId - Drink ID
-   * @param {Object} updateData - Data to update
-   * @returns {Object} Updated favorite
-   */
-  async updateFavorite(userId, drinkId, { notes, tags }) {
-    const favorite = await FavoriteDrink.findOne({
-      user: userId,
-      drink: drinkId
-    });
-
-    if (!favorite) {
-      throw new Error('Favorite not found');
-    }
-
-    if (notes !== undefined) favorite.notes = notes;
-    if (tags !== undefined) favorite.tags = tags;
-
-    await favorite.save();
-    await favorite.populate('drink', 'name category imageUrl price averageRating');
-
-    return favorite;
   }
 
   /**

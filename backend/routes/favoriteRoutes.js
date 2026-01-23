@@ -3,7 +3,6 @@ import {
   addFavorite,
   removeFavorite,
   getMyFavorites,
-  updateFavorite,
   checkFavorite,
   getFavoriteCount,
   getFavoriteStats,
@@ -121,26 +120,6 @@ router.get('/check/:drinkId', protect, checkFavorite);
  *         description: Favorite count
  */
 router.get('/count/:drinkId', getFavoriteCount);
-
-/**
- * @swagger
- * /api/favorites/{drinkId}:
- *   put:
- *     summary: Update favorite notes/tags
- *     tags: [Favorites]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: drinkId
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Favorite updated
- */
-router.put('/:drinkId', protect, updateFavorite);
 
 /**
  * @swagger

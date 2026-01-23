@@ -11,15 +11,6 @@ const favoriteDrinkSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Drink',
       required: [true, 'Drink reference is required']
-    },
-    notes: {
-      type: String,
-      trim: true,
-      maxlength: [500, 'Notes cannot exceed 500 characters']
-    },
-    tags: {
-      type: [String],
-      default: []
     }
   },
   {

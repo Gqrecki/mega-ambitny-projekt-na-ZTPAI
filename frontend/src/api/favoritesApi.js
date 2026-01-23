@@ -6,7 +6,7 @@ import axios from './axios';
 const favoritesApi = {
   /**
    * Add drink to favorites
-   * @param {Object} favoriteData - {drink, notes, tags, favoriteCategory}
+   * @param {Object} favoriteData - {drinkId}
    * @returns {Promise<Object>} - Created favorite
    */
   addFavorite: async (favoriteData) => {
@@ -31,17 +31,6 @@ const favoritesApi = {
    */
   getMyFavorites: async (params = {}) => {
     const response = await axios.get('/favorites', { params });
-    return response.data;
-  },
-
-  /**
-   * Update favorite notes/tags
-   * @param {string} drinkId - Drink ID
-   * @param {Object} updateData - {notes, tags, favoriteCategory}
-   * @returns {Promise<Object>} - Updated favorite
-   */
-  updateFavorite: async (drinkId, updateData) => {
-    const response = await axios.put(`/favorites/${drinkId}`, updateData);
     return response.data;
   },
 

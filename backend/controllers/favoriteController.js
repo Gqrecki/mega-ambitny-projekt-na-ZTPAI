@@ -7,12 +7,9 @@ import { asyncHandler } from '../middleware/errorMiddleware.js';
  * @access  Private
  */
 export const addFavorite = asyncHandler(async (req, res) => {
-  const { drinkId, notes, tags } = req.body;
+  const { drinkId } = req.body;
 
-  const favorite = await favoriteService.addFavorite(req.user.id, drinkId, {
-    notes,
-    tags
-  });
+  const favorite = await favoriteService.addFavorite(req.user.id, drinkId);
 
   res.status(201).json({
     status: 'success',
@@ -51,26 +48,6 @@ export const getMyFavorites = asyncHandler(async (req, res) => {
   res.status(200).json({
     status: 'success',
     data: result
-  });
-});
-
-/**
- * @desc    Update favorite notes/tags
- * @route   PUT /api/favorites/:drinkId
- * @access  Private
- */
-export const updateFavorite = asyncHandler(async (req, res) => {
-  const { notes, tags } = req.body;
-
-  const favorite = await favoriteService.updateFavorite(
-    req.user.id,
-    req.params.drinkId,
-    { notes, tags }
-  );
-
-  res.status(200).json({
-    status: 'success',
-    data: favorite
   });
 });
 
@@ -138,7 +115,6 @@ export default {
   addFavorite,
   removeFavorite,
   getMyFavorites,
-  updateFavorite,
   checkFavorite,
   getFavoriteCount,
   getFavoriteStats,

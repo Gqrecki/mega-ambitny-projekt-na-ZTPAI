@@ -48,38 +48,6 @@ const Favorites = () => {
     }
   };
 
-  const handleUpdateNotes = async (favoriteId, notes) => {
-    try {
-      const response = await favoritesApi.updateFavorite(favoriteId, { notes });
-      if (response.status === 'success') {
-        setFavorites(
-          favorites.map((fav) =>
-            fav._id === favoriteId ? { ...fav, notes } : fav
-          )
-        );
-        toast.success('Notes updated');
-      }
-    } catch (error) {
-      toast.error('Failed to update notes');
-    }
-  };
-
-  const handleUpdateTags = async (favoriteId, tags) => {
-    try {
-      const response = await favoritesApi.updateFavorite(favoriteId, { tags });
-      if (response.status === 'success') {
-        setFavorites(
-          favorites.map((fav) =>
-            fav._id === favoriteId ? { ...fav, tags } : fav
-          )
-        );
-        toast.success('Tags updated');
-      }
-    } catch (error) {
-      toast.error('Failed to update tags');
-    }
-  };
-
   // Filter favorites by category
   const filteredFavorites = favorites.filter((fav) => {
     if (filter === 'all') return true;
@@ -163,61 +131,6 @@ const Favorites = () => {
                       onFavoriteToggle={() => handleRemoveFavorite(favorite.drink._id)}
                       isFavorited={true}
                     />
-                    
-                    {/* Notes Section */}
-                    <div className="favorite-details">
-                      <div className="notes-section">
-                        <label>Personal Notes:</label>
-                        <textarea
-                          value={favorite.notes || ''}
-                          onChange={(e) => {
-                            const updatedFavorites = favorites.map((fav) =>
-                              fav._id === favorite._id ? { ...fav, notes: e.target.value } : fav
-                            );
-                            setFavorites(updatedFavorites);
-                          }}
-                          onBlur={(e) => handleUpdateNotes(favorite._id, e.target.value)}
-                          placeholder="Add your personal notes about this drink..."
-                          rows="2"
-                          className="notes-textarea"
-                        />
-                      </div>
-
-                      {/* Tags Section */}
-                      <div className="tags-section">
-                        <label>Tags:</label>
-                        <input
-                          type="text"
-                          value={favorite.tags?.join(', ') || ''}
-                          onChange={(e) => {
-                            const tags = e.target.value.split(',').map((tag) => tag.trim()).filter(Boolean);
-                            const updatedFavorites = favorites.map((fav) =>
-                              fav._id === favorite._id ? { ...fav, tags } : fav
-                            );
-                            setFavorites(updatedFavorites);
-                          }}
-                          onBlur={(e) => {
-                            const tags = e.target.value.split(',').map((tag) => tag.trim()).filter(Boolean);
-                            handleUpdateTags(favorite._id, tags);
-                          }}
-                          placeholder="Add tags (comma-separated)"
-                          className="tags-input"
-                        />
-                        {favorite.tags && favorite.tags.length > 0 && (
-                          <div className="tags-display">
-                            {favorite.tags.map((tag, index) => (
-                              <span key={index} className="tag">{tag}</span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="favorite-meta">
-                        <span className="added-date">
-                          Added: {new Date(favorite.createdAt).toLocaleDateString()}
-                        </span>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>
