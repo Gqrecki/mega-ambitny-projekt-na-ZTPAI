@@ -16,7 +16,7 @@ import favoriteRoutes from './routes/favoriteRoutes.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 // Import Swagger
-import { swaggerSpec, swaggerUi } from './config/swagger.js';
+import setupSwagger from './config/swagger.js';
 
 // Load environment variables
 dotenv.config();
@@ -62,11 +62,8 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Swagger API Documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-  explorer: true,
-  customCss: '.swagger-ui .topbar { display: none }'
-}));
+// Setup Swagger Documentation
+setupSwagger(app);
 
 // API Welcome
 app.get('/api', (req, res) => {

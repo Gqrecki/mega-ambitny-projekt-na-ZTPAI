@@ -1,7 +1,6 @@
 import app from './app.js';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import setupSwagger from './config/swagger.js';
 import queueService from './services/queueService.js';
 
 // Load environment variables
@@ -24,9 +23,6 @@ async function startServer() {
       console.error('⚠️  RabbitMQ connection failed:', error.message);
       console.log('⚠️  API will continue without RabbitMQ functionality');
     }
-
-    // Setup Swagger Documentation
-    setupSwagger(app);
 
     const server = app.listen(PORT, () => {
       console.log(`
