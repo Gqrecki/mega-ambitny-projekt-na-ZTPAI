@@ -39,8 +39,9 @@ docker-compose ps
 
 ### Access Points
 - **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8080
-- **Swagger Documentation**: http://localhost:8080/api-docs
+- **Backend API**: http://localhost:8080/api
+- **API Health Check**: http://localhost:8080/health
+- **Swagger Documentation**: http://localhost:8080/api-docs/
 - **RabbitMQ Management**: http://localhost:15672 (guest/guest)
 
 ---
