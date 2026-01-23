@@ -109,8 +109,8 @@ npm run dev
 ```
 
 ### 5. Verify:
-- Health check: http://localhost:3000/health
-- Swagger docs: http://localhost:3000/api-docs
+- Health check: http://localhost:8080/health
+- Swagger docs: http://localhost:8080/api-docs
 - MongoDB: Check records in Compass or CLI
 
 ## 🔄 What's Next: Phase 3

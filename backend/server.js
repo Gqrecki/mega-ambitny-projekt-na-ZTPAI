@@ -6,7 +6,7 @@ import setupSwagger from './config/swagger.js';
 // Load environment variables
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Connect to MongoDB
 connectDB();
