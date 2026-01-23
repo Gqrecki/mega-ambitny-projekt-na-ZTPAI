@@ -582,7 +582,7 @@ curl -i http://localhost:8080/api/drinks \
 
 **Axios Configuration** (`frontend/src/api/axios.js`):
 ```javascript
-Base URL:    http://backend:8080/api (Docker service name)
+Base URL:    http://localhost:8080/api (accessible from browser)
 Timeout:     10 seconds
 Interceptors:
   - Request:  Adds JWT token from localStorage
@@ -1029,14 +1029,28 @@ npm run build  # Production build
 
 ## 🔍 Troubleshooting
 
-### Frontend shows "Network error"
+### Frontend shows "Network error" or Login doesn't work
 ```bash
-# Check frontend/.env uses backend service name (not localhost)
+# 1. Check frontend/.env uses localhost (not Docker service name)
 cat frontend/.env
-# Should be: VITE_API_URL=http://backend:8080/api
+# Should be: VITE_API_URL=http://localhost:8080/api
+# (Browser runs on host machine, can't resolve "backend" hostname)
 
-# Restart frontend
+# 2. Restart frontend to reload .env
 docker-compose restart frontend
+
+# 3. IMPORTANT: Hard refresh browser to clear cache
+# Chrome/Firefox: Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows)
+# Or clear browser cache completely
+
+# 4. Open DevTools Console (F12) and check for errors
+# Look for CORS errors or network errors
+
+# 5. Test API directly
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@drinkadvisor.com","password":"Admin123!"}'
+# Should return success with token
 ```
 
 ### Database is empty
