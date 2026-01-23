@@ -212,4 +212,5 @@ const setupSwagger = (app) => {
   console.log('📚 Swagger documentation available at /api-docs');
 };
 
+export { setupSwagger, swaggerSpec, swaggerUi };
 export default setupSwagger;

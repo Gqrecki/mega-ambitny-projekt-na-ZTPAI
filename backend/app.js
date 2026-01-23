@@ -62,6 +62,12 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Swagger API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }'
+}));
+
 // API Welcome
 app.get('/api', (req, res) => {
   res.json({
