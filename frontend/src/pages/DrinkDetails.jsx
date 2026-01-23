@@ -166,6 +166,20 @@ const DrinkDetails = () => {
     }
   };
 
+  const handleAdminDeleteReview = async (reviewId) => {
+    if (!window.confirm('Are you sure you want to delete this review?')) {
+      return;
+    }
+
+    try {
+      await gradesApi.deleteGrade(reviewId);
+      toast.success('Review deleted successfully');
+      fetchDrinkDetails();
+    } catch (error) {
+      toast.error('Failed to delete review');
+    }
+  };
+
   if (loading) {
     return <Loading fullPage message="Loading drink details..." />;
   }
@@ -333,13 +347,24 @@ const DrinkDetails = () => {
                     <span className="review-date">
                       {new Date(review.createdAt).toLocaleDateString()}
                     </span>
-                    <button
-                      onClick={() => handleHelpful(review._id)}
-                      className="helpful-btn"
-                      disabled={!isAuthenticated}
-                    >
-                      👍 Helpful ({review.helpfulCount || 0})
-                    </button>
+                    <div className="review-actions">
+                      <button
+                        onClick={() => handleHelpful(review._id)}
+                        className="helpful-btn"
+                        disabled={!isAuthenticated}
+                      >
+                        👍 Helpful ({review.helpfulCount || 0})
+                      </button>
+                      {user?.role === 'admin' && (
+                        <button
+                          onClick={() => handleAdminDeleteReview(review._id)}
+                          className="admin-delete-btn"
+                          title="Delete review (Admin)"
+                        >
+                          🗑️
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))

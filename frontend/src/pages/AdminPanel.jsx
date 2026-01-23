@@ -55,18 +55,12 @@ const AdminPanel = () => {
           
           // Calculate statistics
           const totalReviews = drinksData.reduce((sum, drink) => sum + (drink.numberOfRatings || 0), 0);
-          const avgRating = drinksData.reduce((sum, drink) => sum + (drink.averageRating || 0), 0) / drinksData.length;
-          const mostReviewed = drinksData.reduce((max, drink) => 
-            (drink.numberOfRatings || 0) > (max.numberOfRatings || 0) ? drink : max
-          , drinksData[0]);
           
           setStats({
             totalUsers: 6, // From seed data
             totalDrinks: drinksData.length,
             totalReviews,
-            totalFavorites: 18, // From seed data
-            averageRating: avgRating,
-            mostReviewedDrink: mostReviewed
+            totalFavorites: 18 // From seed data
           });
         }
       }
@@ -387,18 +381,6 @@ const AdminPanel = () => {
                   <div className="stat-icon">❤️</div>
                   <div className="stat-value">{stats.totalFavorites || 0}</div>
                   <div className="stat-label">Total Favorites</div>
-                </div>
-
-                <div className="stat-card">
-                  <div className="stat-icon">📈</div>
-                  <div className="stat-value">{stats.averageRating?.toFixed(2) || 'N/A'}</div>
-                  <div className="stat-label">Avg Rating</div>
-                </div>
-
-                <div className="stat-card">
-                  <div className="stat-icon">🔥</div>
-                  <div className="stat-value">{stats.mostReviewedDrink?.name || 'N/A'}</div>
-                  <div className="stat-label">Most Reviewed</div>
                 </div>
               </div>
             ) : (

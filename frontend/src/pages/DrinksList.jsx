@@ -106,32 +106,6 @@ const DrinksList = () => {
           </p>
         </header>
 
-        {/* Search Bar */}
-        <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search drinks by name or brand..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="search-input"
-          />
-          <button type="submit" className="search-button">
-            🔍 Search
-          </button>
-          {search && (
-            <button
-              type="button"
-              onClick={() => {
-                setSearch('');
-                setParams({ search: undefined, page: 1 });
-              }}
-              className="search-clear"
-            >
-              Clear
-            </button>
-          )}
-        </form>
-
         {/* Filters */}
         <div className="filters-bar">
           <div className="filter-group">
@@ -166,6 +140,32 @@ const DrinksList = () => {
             </select>
           </div>
         </div>
+
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="search-form">
+          <input
+            type="text"
+            placeholder="Search drinks by name or brand..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+          <button type="submit" className="search-button">
+            🔍 Search
+          </button>
+          {search && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearch('');
+                setParams({ search: undefined, page: 1 });
+              }}
+              className="search-clear"
+            >
+              Clear
+            </button>
+          )}
+        </form>
 
         {/* Error State */}
         {error && (

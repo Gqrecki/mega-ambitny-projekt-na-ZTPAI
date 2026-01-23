@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { drinksApi, gradesApi, favoritesApi } from '../api';
+import { drinksApi } from '../api';
 import { Loading } from '../components';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [stats, setStats] = useState(null);
   const [trendingDrinks, setTrendingDrinks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,22 +22,6 @@ const Dashboard = () => {
       const trendingResponse = await drinksApi.getTrendingDrinks();
       if (trendingResponse.status === 'success') {
         setTrendingDrinks(trendingResponse.data.slice(0, 6));
-      }
-
-      // Fetch user stats if authenticated
-      if (user) {
-        try {
-          const favStats = await favoritesApi.getMyFavoriteStats();
-          const myGrades = await gradesApi.getMyGrades();
-          
-          setStats({
-            favorites: favStats.data?.totalFavorites || 0,
-            reviews: myGrades.data?.grades?.length || 0,
-          });
-        } catch (error) {
-          // User stats are optional
-          console.log('Could not fetch user stats');
-        }
       }
     } catch (error) {
       console.error('Dashboard error:', error);
@@ -64,34 +47,7 @@ const Dashboard = () => {
           </p>
         </section>
 
-        {/* Stats Section (for authenticated users) */}
-        {user && stats && (
-          <section className="dashboard-stats">
-            <div className="stat-card">
-              <div className="stat-icon">❤️</div>
-              <div className="stat-content">
-                <div className="stat-value">{stats.favorites}</div>
-                <div className="stat-label">Favorites</div>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">⭐</div>
-              <div className="stat-content">
-                <div className="stat-value">{stats.reviews}</div>
-                <div className="stat-label">Reviews</div>
-              </div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">🍸</div>
-              <div className="stat-content">
-                <div className="stat-value">{trendingDrinks.length}</div>
-                <div className="stat-label">Trending</div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Trending Drinks Section */}
+        {/* Trending Drinks Section */
         <section className="dashboard-section">
           <div className="section-header">
             <h2 className="section-title">🔥 Trending Drinks</h2>
