@@ -51,7 +51,7 @@ const gradesApi = {
    * @returns {Promise<Object>} - User's reviews
    */
   getMyGrades: async () => {
-    const response = await axios.get('/grades/my');
+    const response = await axios.get('/grades/user');
     return response.data;
   },
 
