@@ -83,7 +83,7 @@ const DrinksList = () => {
         await favoritesApi.removeFavorite(drinkId);
         setFavorites(favorites.filter(id => id !== drinkId));
       } else {
-        await favoritesApi.addFavorite({ drink: drinkId });
+        await favoritesApi.addFavorite({ drinkId });
         setFavorites([...favorites, drinkId]);
       }
     } catch (error) {
