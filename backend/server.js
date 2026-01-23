@@ -1,13 +1,18 @@
 import app from './app.js';
 import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import setupSwagger from './config/swagger.js';
 
 // Load environment variables
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-// Database connection will be added in Phase 2
-// RabbitMQ connection will be added in Phase 3
+// Connect to MongoDB
+connectDB();
+
+// Setup Swagger Documentation
+setupSwagger(app);
 
 const server = app.listen(PORT, () => {
   console.log(`
@@ -15,7 +20,7 @@ const server = app.listen(PORT, () => {
 ║                                                       ║
 ║        🍸 DrinkAdvisor API Server Running            ║
 ║                                                       ║
-║        Environment: ${process.env.NODE_ENV?.padEnd(10) || 'development'.padEnd(10)}                      ║
+║        Environment: ${(process.env.NODE_ENV || 'development').padEnd(10)}                      ║
 ║        Port: ${PORT}                                     ║
 ║        URL: http://localhost:${PORT}                    ║
 ║        Health: http://localhost:${PORT}/health          ║
