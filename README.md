@@ -80,7 +80,7 @@ Projekt jest w pełni skonteneryzowany. Wymagany jest zainstalowany **Docker** o
 
 1. Sklonuj repozytorium:
    ```bash
-   git clone <adres_repo>
+   git clone https://github.com/Gqrecki/mega-ambitny-projekt-na-ZTPAI
    cd DrinkAdvisor
    ```
 
