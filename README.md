@@ -93,8 +93,8 @@ Projekt jest w pełni skonteneryzowany. Wymagany jest zainstalowany **Docker** o
 
 4. Aplikacja dostępna pod adresami:
    - **Frontend:** http://localhost:5173
-   - **API:** http://localhost:5000
-   - **Swagger Docs:** http://localhost:5000/api-docs
+   - **API:** http://localhost:3000
+   - **Swagger Docs:** http://localhost:3000/api-docs
 
 ### Uruchomienie Ręczne (Dla deweloperów)
 
